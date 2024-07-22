@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Queueworker\SansDaemon;
 
+use Illuminate\Contracts\Queue\Job;
+use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Queue\Worker;
 use Illuminate\Queue\WorkerOptions;
 
@@ -9,26 +13,17 @@ class SansDaemonWorker extends Worker
 {
     /**
      * Get the next job from the queue connection.
-     *
-     * @param  \Illuminate\Contracts\Queue\Queue  $connection
-     * @param  string  $queue
-     * @return \Illuminate\Contracts\Queue\Job|null
      */
-    public function getNextSansDaemonJob($connection, $queue)
+    public function getNextSansDaemonJob(Queue $connection, string $queue): ?Job
     {
         return $this->getNextJob($connection, $queue);
     }
 
     /**
      * Process the given job.
-     *
-     * @param  \Illuminate\Contracts\Queue\Job  $job
-     * @param  string  $connectionName
-     * @param  \Illuminate\Queue\WorkerOptions  $options
-     * @return void
      */
-    public function runSansDaemonJob($job, $connectionName, WorkerOptions $options)
+    public function runSansDaemonJob(Job $job, string $connectionName, WorkerOptions $options): void
     {
-        return $this->runJob($job, $connectionName, $options);
+        $this->runJob($job, $connectionName, $options);
     }
 }
