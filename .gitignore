@@ -1,0 +1,31 @@
+.env
+.env-file.list
+*.log
+
+composer.lock
+composer.phar
+
+.phpunit.result.cache
+
+/vendor
+
+### OSX ###
+.DS_Store
+
+### Netbeans ###
+nbproject
+
+### PhpStorm ###
+.idea
+
+### Sublime Text ###
+*.sublime-*
+!*.sublime-project
+
+### VS Code ###
+.vscode/
+
+### OS Specific ###
+.DS_Store
+Thumbs.db
+
