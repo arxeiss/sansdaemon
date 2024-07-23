@@ -42,7 +42,7 @@ jobs:
           composer install --no-interaction --prefer-dist --no-progress
 
       - name: Run tests
-        run: composer test --coverage-text --coverage-clover=coverage.xml
+        run: php vendor/bin/phpunit --coverage-filter=src --coverage-text --coverage-clover=coverage.xml
 
       - name: Upload coverage to Codecov
         # Upload coverage only on latest PHP

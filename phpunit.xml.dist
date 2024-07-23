@@ -11,11 +11,6 @@
     stopOnFailure="false"
     verbose="true"
     xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage processUncoveredFiles="true">
-    <include>
-      <directory suffix=".php">src/</directory>
-    </include>
-  </coverage>
   <testsuites>
     <testsuite name="Sansdaemon">
       <directory suffix=".php">./tests/Unit/</directory>
