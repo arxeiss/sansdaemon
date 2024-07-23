@@ -1,0 +1,73 @@
+name: Lint, STAN and Test Code
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+concurrency:
+  group: lint-stan-test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  phpunit:
+    strategy:
+      fail-fast: false
+      matrix:
+        versions:
+          # All versions below only support PHP ^8.1 (Laravel requirement)
+          - { php: '8.0', laravel: ^9.0, }
+          - { php: '8.1', laravel: ^10.0, }
+          - { php: '8.2', laravel: ^11.0, }
+          - { php: '8.3', laravel: ^11.0, }
+
+    name: PHP Unit Tests (PHP:${{ matrix.versions.php }}, Laravel:${{ matrix.versions.laravel }})
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.versions.php }}
+          tools: composer:v2
+
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.versions.laravel }}" --no-interaction --no-update
+          composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Run tests
+        run: composer test --coverage-text --coverage-clover=coverage.xml
+
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v4
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+
+  checks:
+    name: Lint and STAN
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+          tools: composer:v2
+
+      - name: Install dependencies
+        run:  composer install
+
+      - name: Run lint
+        run: composer lint
+
+      - name: Run PHP STAN
+        run: composer stan
