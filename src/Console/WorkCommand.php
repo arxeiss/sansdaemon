@@ -61,7 +61,7 @@ class WorkCommand extends BaseWorkCommand
     /**
      * Process the queue sans-daemon mode.
      */
-    protected function runSansDaemon(string $connection, string $queue): void
+    protected function runSansDaemon(string $connection, string $queue): int
     {
         // phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
         while ($this->shouldRunNextJob() && ($job = $this->getNextJob($connection, $queue)) !== null) {
@@ -69,6 +69,8 @@ class WorkCommand extends BaseWorkCommand
 
             $this->jobsProcessed += 1;
         }
+
+        return 0;
     }
 
     /**
@@ -99,6 +101,7 @@ class WorkCommand extends BaseWorkCommand
             return false;
         }
 
+        // @phpstan-ignore constant.notFound
         $elapsedTime = \microtime(true) - \LARAVEL_START;
 
         return $elapsedTime > $max_exec_time;

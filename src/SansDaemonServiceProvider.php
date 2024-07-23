@@ -6,10 +6,14 @@ namespace Queueworker\SansDaemon;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Foundation\Application as AppProp;
 use Illuminate\Queue\Console\WorkCommand as BaseWorkCommand;
 use Illuminate\Queue\QueueServiceProvider;
 use Queueworker\SansDaemon\Console\WorkCommand;
 
+/**
+ * @property AppProp $app
+ */
 class SansDaemonServiceProvider extends QueueServiceProvider
 {
     /**
@@ -69,8 +73,8 @@ class SansDaemonServiceProvider extends QueueServiceProvider
                 $this->app->extend(
                     $baseCommand,
                     static fn ($command, Application $app) => new WorkCommand(
-                        $app['queue.sansDaemonWorker'],
-                        $app['cache.store'],
+                        $app['queue.sansDaemonWorker'], // @phpstan-ignore offsetAccess.nonOffsetAccessible
+                        $app['cache.store'], // @phpstan-ignore offsetAccess.nonOffsetAccessible
                     ),
                 );
 
