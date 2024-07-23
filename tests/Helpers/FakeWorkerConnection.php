@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace Tests\Helpers;
 
 use DateInterval;
 use DateTimeInterface;

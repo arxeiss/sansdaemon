@@ -2,12 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace Tests\Unit;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Contracts\Queue\Job;
 use Orchestra\Testbench\TestCase;
 use Queueworker\SansDaemon\SansDaemonWorker;
+use Tests\Helpers\FakeWorkerConnection;
+use Tests\Helpers\FakeWorkerJob;
+use Tests\Helpers\FakeWorkerManager;
 
 class SansDaemonTest extends TestCase
 {

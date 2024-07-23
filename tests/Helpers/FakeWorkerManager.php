@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace Tests\Helpers;
 
 use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Queue\QueueManager;

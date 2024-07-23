@@ -18,11 +18,10 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          # All versions below only support PHP ^8.1 (Laravel requirement)
-          - { php: '8.0', laravel: ^9.0, }
-          - { php: '8.1', laravel: ^10.0, }
-          - { php: '8.2', laravel: ^11.0, }
-          - { php: '8.3', laravel: ^11.0, }
+          - { php: '8.0', laravel: ^9.0 }
+          - { php: '8.1', laravel: ^10.0 }
+          - { php: '8.2', laravel: ^11.0 }
+          - { php: '8.3', laravel: ^11.0 }
 
     name: PHP Unit Tests (PHP:${{ matrix.versions.php }}, Laravel:${{ matrix.versions.laravel }})
     runs-on: ubuntu-latest
@@ -44,10 +43,12 @@ jobs:
       - name: Run tests
         run: composer test --coverage-text --coverage-clover=coverage.xml
 
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v4
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload coverage to Codecov
+        # Upload coverage only on latest PHP
+        if: ${{ matrix.versions.php == '8.3' }}
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   checks:
     name: Lint and STAN
