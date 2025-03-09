@@ -40,8 +40,6 @@ class SansDaemonServiceProvider extends QueueServiceProvider
 
     /**
      * Configure the queue.
-     *
-     * @return void.
      */
     protected function configureQueue(): void
     {
