@@ -19,12 +19,12 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/support": "^9.5 | ^10.0 | ^11.0"
+        "illuminate/support": "^9.5 | ^10.0 | ^11.0 | ^12.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5 | ^10.0 | ^11.0",
-        "orchestra/testbench": "^7.0 | ^8.0 | ^9.0",
-        "phpstan/phpstan": "^1.11",
+        "phpunit/phpunit": "^9.5 | ^10.0 | ^11.0 | ^12.0",
+        "orchestra/testbench": "^7.0 | ^8.0 | ^9.0 | ^10.0",
+        "phpstan/phpstan": "^2.1",
         "arxeiss/coding-standards": "^0.12.0"
     },
     "autoload": {
