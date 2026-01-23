@@ -4,6 +4,7 @@
 
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/arxeiss/sansdaemon)](https://packagist.org/packages/arxeiss/sansdaemon)
 [![Packagist Version](https://img.shields.io/packagist/v/arxeiss/sansdaemon)](https://packagist.org/packages/arxeiss/sansdaemon)
+![Illuminate Version](https://img.shields.io/packagist/dependency-v/arxeiss/sansdaemon/illuminate%2Fsupport)
 [![Build](https://github.com/arxeiss/sansdaemon/actions/workflows/lint-stan-test.yaml/badge.svg)](https://github.com/arxeiss/sansdaemon/actions/workflows/lint-stan-test.yaml)
 [![codecov](https://codecov.io/gh/arxeiss/sansdaemon/graph/badge.svg?token=RUFUKN9AZL)](https://codecov.io/gh/arxeiss/sansdaemon)
 [![PHP STAN](https://img.shields.io/badge/phpstan-level%208-informational)](https://github.com/phpstan/phpstan)
