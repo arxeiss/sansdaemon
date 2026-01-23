@@ -3,12 +3,13 @@
     backupGlobals="false"
     bootstrap="vendor/autoload.php"
     colors="true"
-    failOnNotice="true"
-    failOnDeprecation="true"
-    failOnWarning="true"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
     processIsolation="false"
     stopOnFailure="false"
-    displayDetailsOnPhpunitDeprecations="true">
+    verbose="true"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
   <testsuites>
     <testsuite name="Sansdaemon">
       <directory suffix=".php">./tests/Unit/</directory>

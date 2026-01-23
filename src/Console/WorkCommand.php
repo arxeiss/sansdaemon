@@ -101,7 +101,6 @@ class WorkCommand extends BaseWorkCommand
             return false;
         }
 
-        // @phpstan-ignore constant.notFound
         $elapsedTime = \microtime(true) - \LARAVEL_START;
 
         return $elapsedTime > $max_exec_time;

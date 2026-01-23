@@ -137,6 +137,6 @@ class SansDaemonTest extends TestCase
      */
     private function getManager(string $connectionName, array $jobs = []): FakeWorkerManager
     {
-        return new FakeWorkerManager($connectionName, new FakeWorkerConnection($jobs));
+        return new FakeWorkerManager($this->app, $connectionName, new FakeWorkerConnection($jobs));
     }
 }
