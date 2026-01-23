@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace Tests\Helpers;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Queue\QueueManager;
 
 class FakeWorkerManager extends QueueManager
 {
-    public function __construct(string $name, Queue $connection)
+    public function __construct(Application $app, string $name, Queue $connection)
     {
+        parent::__construct($app);
+
         $this->connections[$name] = $connection;
     }
 

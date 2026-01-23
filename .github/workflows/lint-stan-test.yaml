@@ -18,12 +18,13 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - { php: '8.0', laravel: ^9.0 }
+          - { php: '8.0', laravel: ^9.0, unitflag: '--configuration phpunit.9.xml.dist' }
           - { php: '8.1', laravel: ^10.0 }
           - { php: '8.2', laravel: ^11.0 }
-          - { php: '8.3', laravel: ^11.0 }
           - { php: '8.2', laravel: ^12.0 }
           - { php: '8.3', laravel: ^12.0 }
+          - { php: '8.4', laravel: ^12.0 }
+          - { php: '8.5', laravel: ^12.0, coverage: true }
 
     name: PHP Unit Tests (PHP:${{ matrix.versions.php }}, Laravel:${{ matrix.versions.laravel }})
     runs-on: ubuntu-latest
@@ -44,11 +45,11 @@ jobs:
           composer install --no-interaction --prefer-dist --no-progress
 
       - name: Run tests
-        run: php vendor/bin/phpunit --coverage-filter=src --coverage-text --coverage-clover=coverage.xml
+        run: php vendor/bin/phpunit ${{ matrix.versions.unitflag }} --coverage-filter=src --coverage-text --coverage-clover=coverage.xml
 
       - name: Upload coverage to Codecov
         # Upload coverage only on latest PHP
-        if: ${{ matrix.versions.php == '8.3' }}
+        if: ${{ matrix.versions.coverage == true }}
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
