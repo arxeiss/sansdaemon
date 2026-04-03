@@ -151,4 +151,52 @@ class FakeWorkerConnection implements Queue
     {
         return $this;
     }
+
+    /**
+     * Get the number of pending jobs.
+     *
+     * @param string|null $queue
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function pendingSize($queue = null): int
+    {
+        return 0;
+    }
+
+    /**
+     * Get the number of delayed jobs.
+     *
+     * @param string|null $queue
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function delayedSize($queue = null): int
+    {
+        return 0;
+    }
+
+    /**
+     * Get the number of reserved jobs.
+     *
+     * @param string|null $queue
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function reservedSize($queue = null): int
+    {
+        return 0;
+    }
+
+    /**
+     * Get the creation timestamp of the oldest pending job, excluding delayed jobs.
+     *
+     * @param string|null $queue
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function creationTimeOfOldestPendingJob($queue = null): int
+    {
+        return 0;
+    }
 }
